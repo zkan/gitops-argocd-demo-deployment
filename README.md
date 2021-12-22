@@ -36,6 +36,12 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f install.yaml
 ```
 
+Access Argo CD with port-forwarding
+
+```sh
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+
 Get the default password
 
 ```sh
