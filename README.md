@@ -1,5 +1,12 @@
 # gitops-argocd-demo-deployment
 
+## Deploying My App
+
+```sh
+kubectl create namespace myapp-dev
+kubectl apply -f myapp/dev -n myapp-dev
+```
+
 ## Deploying My App with Helm
 
 Render chart templates locally:
@@ -11,13 +18,14 @@ helm template myapp-helm myapp-helm -f myapp-helm/values-dev.yaml
 Install chart
 
 ```sh
-helm upgrade --install myapp-helm myapp-helm -f myapp-helm/values-dev.yaml
+kubectl create namespace myapp-helm
+helm upgrade --install myapp-helm myapp-helm -f myapp-helm/values-dev.yaml -n myapp-helm
 ```
 
 Uninstall chart
 
 ```sh
-helm uninstall myapp-helm
+helm uninstall myapp-helm -n myapp-helm
 ```
 
 ## Deploying My App with Argo CD
