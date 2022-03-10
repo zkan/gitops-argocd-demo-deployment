@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: myapp
-          image: zkan/fapi:dde48fcb
+          image: zkan/fapi:03c7f1d7
           ports:
             - containerPort: 8000
