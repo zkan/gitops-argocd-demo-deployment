@@ -1,21 +1,5 @@
 # gitops-argocd-demo-deployment
 
-## Installing Argo CD
-
-```sh
-kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-```
-
-or
-
-```sh
-kubectl create namespace argocd
-kubectl apply -n argocd -f bootstrap/overlays/default
-```
-
-Ref: https://argo-cd.readthedocs.io/en/stable/getting_started/
-
 ## Deploying My App
 
 ```sh
@@ -46,7 +30,7 @@ helm uninstall myapp-helm -n myapp-helm
 
 ## Deploying My App with Argo CD
 
-Install Argo CD
+## Installing Argo CD
 
 ```sh
 kubectl create namespace argocd
@@ -55,15 +39,23 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 or
 
-```
+```sh
 kubectl create namespace argocd
-kubectl apply -n argocd -f install.yaml
+kubectl apply -n argocd -f bootstrap/overlays/default
 ```
+
+Ref: https://argo-cd.readthedocs.io/en/stable/getting_started/
 
 Access Argo CD with port-forwarding
 
 ```sh
 kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+
+or
+
+```sh
+make web
 ```
 
 Get the default password
@@ -72,16 +64,23 @@ Get the default password
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 ```
 
+or
+
+```sh
+make passwd
+```
+
 Create Argo CD Application
 
 ```sh
-kubectl apply -f app.yaml
+kubectl apply -f components/applicationsets/app.yaml
+kubectl apply -f components/applicationsets/app-helm.yaml
 ```
 
 or
 
 ```sh
-kubectl apply -f app-helm.yaml
+kubectl apply -f components/applicationsets
 ```
 
 Try to edit the deployment:
@@ -97,3 +96,11 @@ kubectl edit deployment -n myapp-helm myapp-helm-deployment
 ```
 
 We'll see that Argo CD will revert back to the desired state.
+
+## Cleaning Up
+
+```sh
+kubectl delete ns myapp-dev
+kubectl delete ns myapp-helm-dev
+kubectl delete ns argocd
+```
