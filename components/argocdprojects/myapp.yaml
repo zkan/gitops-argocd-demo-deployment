@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: myapp
+  namespace: argocd
+  finalizers:
+    - "resources-finalizer.argocd.argoproj.io"
+spec:
+  description: My App
+  sourceRepos:
+    - "https://github.com/zkan/gitops-argocd-demo-deployment.git"
+  destinations:
+    - namespace: myapp-dev
+      server: "https://kubernetes.default.svc"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"

@@ -4,7 +4,7 @@ metadata:
   name: myapp-helm-argo-application
   namespace: argocd
 spec:
-  project: default
+  project: myapp
   source:
     repoURL: https://github.com/zkan/gitops-argocd-demo-deployment.git
     targetRevision: HEAD
@@ -15,7 +15,7 @@ spec:
         - values-dev.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: myapp-helm
+    namespace: myapp-helm-dev
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
