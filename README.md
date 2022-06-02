@@ -108,5 +108,7 @@ We'll see that Argo CD will revert back to the desired state.
 ```sh
 kubectl delete -f components/applicationsets
 kubectl delete -f components/argocdprojects
+kubectl delete ns myapp-dev
+kubectl delete ns myapp-helm-dev
 kubectl delete ns argocd
 ```
