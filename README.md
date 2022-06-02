@@ -70,7 +70,13 @@ or
 make passwd
 ```
 
-Create Argo CD Application
+Create Argo CD Projects
+
+```sh
+kubectl apply -f components/argocdprojects/
+```
+
+Create Argo CD Applications
 
 ```sh
 kubectl apply -f components/applicationsets/app.yaml
