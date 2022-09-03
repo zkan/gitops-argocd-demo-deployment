@@ -1,5 +1,8 @@
 # gitops-argocd-demo-deployment
 
+Read more about Argo CD here: [Argo CD - Declarative GitOps CD for
+Kubernetes](https://argo-cd.readthedocs.io/en/stable/)
+
 ## Deploying My App
 
 ```sh
