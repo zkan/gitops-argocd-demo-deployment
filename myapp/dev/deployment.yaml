@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: myapp
-          image: zkan/fapi:1bd439f0
+          image: nginx:1.14.2
           ports:
-            - containerPort: 8000
+            - containerPort: 80
